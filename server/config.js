@@ -1,8 +1,8 @@
 module.exports = {
   cloudinary: {
-    cloud_name: 'djtmu7o6u',
-    api_key: '456815586346562',
-    api_secret: 'fxa0j_mX1Lle13MhCg6UtZZweb4'
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
   },
   port: process.env.PORT || 5000
 };

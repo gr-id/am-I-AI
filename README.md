@@ -128,17 +128,39 @@ Firebase App Hosting는 GitHub 저장소와 연동하여 자동 배포를 지원
 ## 환경 변수
 
 ### 서버 (.env)
+⚠️ **중요**: `server/` 디렉토리에 `.env` 파일을 생성하고 다음 내용을 추가하세요:
 ```
-CLOUDINARY_CLOUD_NAME=your_cloud_name
-CLOUDINARY_API_KEY=your_api_key
-CLOUDINARY_API_SECRET=your_api_secret
+CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
+CLOUDINARY_API_KEY=your_cloudinary_api_key
+CLOUDINARY_API_SECRET=your_cloudinary_api_secret
 PORT=5000
 ```
+
+**보안 주의사항**:
+- `.env` 파일은 절대 Git에 커밋하지 마세요
+- 실제 API 키는 클라우디너리 대시보드에서 새로 생성하세요
+- 배포 시에는 각 플랫폼의 환경변수 설정을 사용하세요
 
 ### 클라이언트
 ```
 REACT_APP_API_URL=http://localhost:5000/api
 ```
+
+## 배포 플랫폼별 환경변수 설정
+
+### Vercel
+1. Vercel 대시보드 → 프로젝트 → Settings → Environment Variables
+2. 다음 변수들을 추가:
+   - `CLOUDINARY_CLOUD_NAME`: `@cloudinary_cloud_name`
+   - `CLOUDINARY_API_KEY`: `@cloudinary_api_key`
+   - `CLOUDINARY_API_SECRET`: `@cloudinary_api_secret`
+
+### Google App Engine
+1. `app.yaml` 파일에서 `YOUR_CLOUDINARY_*` 부분을 실제 값으로 교체
+2. 또는 `gcloud` CLI 사용:
+   ```bash
+   gcloud app deploy --set-env-vars CLOUDINARY_CLOUD_NAME=your_value,CLOUDINARY_API_KEY=your_value,CLOUDINARY_API_SECRET=your_value
+   ```
 
 ## 주요 컴포넌트
 
